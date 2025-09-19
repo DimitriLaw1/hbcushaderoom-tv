@@ -1,38 +1,387 @@
-.App {
-  text-align: center;
+:root {
+  --bg-left: #1a1aee;
+  --bg-right: #4a35ff;
+  --text: #ffffff;
+  --muted: rgba(255, 255, 255, 0.75);
+  --accent: #f39ad8;
+  --ink: #1a1340;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Make sure padding is included in width */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body,
+html,
+#root {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-left);
+  color: var(--text);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.bg-split {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    90deg,
+    var(--bg-left) 0 50%,
+    var(--bg-right) 50% 100%
+  );
+}
+
+/* Layout */
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* Header */
+.nav {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
 }
 
-.App-link {
-  color: #61dafb;
+.nav .links {
+  display: flex;
+  list-style: none;
+  gap: 18px;
+  padding: 0;
+  margin: 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.nav .links a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.nav .links a:hover {
+  color: var(--text);
+}
+
+/* Hero Section */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  padding-block: 24px;
+}
+
+.copy {
+  display: grid;
+  gap: 14px;
+}
+
+.eyebrow {
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: 12px;
+}
+
+.title {
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.accent {
+  color: var(--accent);
+}
+
+.subtitle {
+  color: var(--muted);
+  max-width: 60ch;
+}
+
+.cta-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn {
+  background: var(--accent);
+  color: var(--ink);
+  padding: 12px 18px;
+  border-radius: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 12px 34px rgba(243, 154, 216, 0.35);
+}
+
+.btn:hover {
+  filter: brightness(1.05);
+}
+
+.hash {
+  font-style: italic;
+  opacity: 0.75;
+}
+
+/* TV Frame Section */
+.visual {
+  display: grid;
+  place-items: center; /* Centers the TV on mobile */
+}
+
+.tv {
+  width: 100%;
+  max-width: 640px;
+  box-sizing: border-box; /* Includes padding in width */
+  margin: 0;
+  justify-self: center; /* Extra centering for Safari */
+  padding: 12px;
+  background: linear-gradient(135deg, #0b0b33, #15154a);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 28px;
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.55);
+  transition: transform 0.15s ease;
+}
+
+.bezel {
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 22px;
+  padding: 8px;
+}
+
+.screen {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  outline: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* 16:9 Aspect Ratio Hack */
+.screen::before {
+  content: "";
+  display: block;
+  padding-top: 56.25%; /* 9/16 = 0.5625 */
+}
+
+.real-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.fake-video,
+.real-video {
+  position: absolute;
+  inset: 0;
+}
+
+/* Fake Video Placeholder */
+.fake-video {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    60% 60% at 20% 20%,
+    #ff7ce5 0%,
+    #5b2be5 35%,
+    #1b1bf4 65%,
+    #0a0a2a 100%
+  );
+  animation: pulse 8s ease-in-out infinite;
+  display: grid;
+  place-items: center;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    filter: saturate(100%);
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    filter: saturate(140%);
+  }
+}
+
+.scanlines {
+  position: absolute;
+  inset: 0;
+  opacity: 0.25;
+  background-image: repeating-linear-gradient(
+    transparent 0px,
+    transparent 4px,
+    rgba(0, 0, 0, 0.2) 5px
+  );
+}
+
+.play {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--ink);
+  border: none;
+  padding: 10px 14px;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.play:hover {
+  background: white;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  font-size: 12px;
+  opacity: 0.75;
+  padding: 40px 0;
+}
+
+/* ===== Header + Hamburger ===== */
+.site-header {
+  position: relative;
+  padding-top: 16px;
+  padding-bottom: 8px;
+}
+
+.brand-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 12px 14px;
+}
+
+/* Brand text */
+.brand {
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  text-decoration: none;
+}
+
+/* Desktop link row (hidden on mobile) */
+.links-desktop {
+  display: none;
+  gap: 18px;
+}
+.links-desktop a {
+  color: var(--muted);
+  text-decoration: none;
+}
+.links-desktop a:hover {
+  color: var(--text);
+}
+
+/* Burger button (mobile) */
+.burger {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  width: 38px;
+  height: 32px;
+  display: grid;
+  gap: 5px;
+  align-content: center;
+  cursor: pointer;
+}
+.burger-line {
+  height: 3px;
+  background: var(--text);
+  border-radius: 2px;
+  display: block;
+}
+
+/* Slide-down mobile menu */
+.menu-panel {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  top: calc(100% + 8px);
+  background: rgba(15, 15, 35, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 10px;
+  display: grid;
+  gap: 6px;
+  transform: translateY(-8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms ease, transform 160ms ease;
+  z-index: 20;
+}
+.menu-panel a {
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: var(--text);
+  text-decoration: none;
+  display: block;
+}
+.menu-panel a:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+.menu-panel.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Backdrop for mobile menu */
+.menu-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms ease;
+  z-index: 10;
+}
+.menu-backdrop.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Desktop behavior */
+@media (min-width: 768px) {
+  .burger {
+    display: none;
+  }
+  .links-desktop {
+    display: flex;
+  }
+  .menu-panel,
+  .menu-backdrop {
+    display: none !important;
+  }
+}
+
+/* Optional spacer for menu anchors below */
+.spacer {
+  padding: 32px 0;
+}
+
+/* Larger Screens */
+@media (min-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr 1fr;
+    padding-block: 40px;
+  }
+  .title {
+    font-size: 60px;
+  }
+  /* On desktop, TV moves to the right side */
+  .visual {
+    justify-items: end;
   }
 }

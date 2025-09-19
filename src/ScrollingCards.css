@@ -1,0 +1,177 @@
+/* src/ScrollingCards.css */
+
+/* ===== Scrolling Cards ===== */
+.cards-wrap {
+  position: relative;
+  margin: 24px auto 16px;
+  max-width: 1120px;
+  padding-inline: 0;
+}
+
+.cards-rail {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 86%;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 8px 8px 24px;
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: none;
+}
+.cards-rail::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .cards-rail {
+    grid-auto-columns: 60%;
+  }
+}
+@media (min-width: 1024px) {
+  .cards-rail {
+    grid-auto-columns: 32%;
+  }
+}
+
+.card {
+  scroll-snap-align: start;
+  background: #161616;
+  color: #eaeaea;
+  border-radius: 28px;
+  padding: 20px 20px 28px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  min-height: 300px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+}
+
+.avatar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 72px; /* keep handle under the image */
+}
+
+/* the avatar grid */
+.card-avatars {
+  display: grid;
+  grid-template-columns: repeat(3, 72px);
+  /* REMOVE the fixed row height and let rows grow for the handle text */
+  /* grid-auto-rows: 72px; */ /* <- delete this line */
+  grid-auto-rows: max-content; /* rows fit image + handle */
+  gap: 16px;
+  justify-content: start;
+  padding: 8px 0 8px 4px;
+  margin-bottom: 8px; /* space before the title */
+}
+
+.avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+}
+
+/* Handle text */
+.avatar-handle {
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+  white-space: nowrap; /* keep on one line */
+  overflow: hidden; /* clip long handles */
+  text-overflow: ellipsis; /* add … if too long */
+  width: 100%; /* match .avatar-wrapper width */
+  line-height: 1.2;
+  margin: 0; /* tighter spacing */
+}
+
+.card-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 10px 0 0; /* was 8px */
+}
+.card-subtitle {
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0;
+  font-size: 15px;
+}
+
+/* Rail arrow buttons */
+.rail-btn {
+  position: absolute;
+  top: 38%;
+  transform: translateY(-50%);
+  z-index: 1;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(30, 30, 30, 0.85);
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.rail-btn--left {
+  left: -4px;
+}
+
+.rail-btn--right {
+  right: -4px;
+}
+
+.rail-btn:hover {
+  background: rgba(45, 45, 45, 0.95);
+}
+
+/* ===== Heading Above Cards ===== */
+.cards-header {
+  text-align: center;
+  margin-bottom: 24px;
+  padding-inline: 16px;
+}
+
+.cards-title {
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--text);
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+.cards-subtitle {
+  font-size: 16px;
+  color: var(--muted);
+  margin-top: 8px;
+  line-height: 1.4;
+}
+
+@media (max-width: 420px) {
+  .rail-btn--left {
+    left: 4px;
+  }
+  .rail-btn--right {
+    right: 4px;
+  }
+}
+/* Adjust for larger screens */
+@media (min-width: 768px) {
+  .cards-title {
+    font-size: 40px;
+  }
+  .cards-subtitle {
+    font-size: 18px;
+  }
+}
