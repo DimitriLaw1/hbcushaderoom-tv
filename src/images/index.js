@@ -23,6 +23,7 @@ const handlesMap = {
   8958: "Jaden",
   8959: "Myles",
   8960: "Donovan",
+  8961: "Mari",
 };
 
 // Auto-import all images from the folder
