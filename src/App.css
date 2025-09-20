@@ -352,6 +352,86 @@ html,
   pointer-events: auto;
 }
 
+/* White background band */
+.adv-section {
+  background: #ffffff;
+}
+
+/* Inner container padding so the white band has breathing room */
+.adv-inner {
+  padding: clamp(32px, 6vw, 80px) 0;
+}
+
+/* Title + stats (same as before) */
+:root {
+  --adv-purple: #6a30ff;
+  --adv-purple-dark: #5a22f5;
+}
+
+.adv-title {
+  color: var(--bg-left);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-size: clamp(28px, 5.5vw, 64px);
+  max-width: 22ch;
+  margin: 0 auto clamp(28px, 4vw, 48px);
+  text-align: left;
+}
+.adv-title span {
+  color: var(--bg-left);
+}
+
+.adv-stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 clamp(28px, 4vw, 40px);
+}
+@media (min-width: 860px) {
+  .adv-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(24px, 4vw, 56px);
+  }
+}
+.adv-number {
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  font-size: clamp(56px, 12vw, 120px);
+  background: linear-gradient(180deg, var(--bg-left) 0%, #9a6bff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 0.95;
+}
+.adv-caption {
+  color: #5a5a64;
+  font-size: clamp(14px, 2.2vw, 18px);
+  margin-top: 8px;
+}
+
+.adv-cta {
+  margin-top: clamp(20px, 4vw, 36px);
+}
+.btn.btn-outline {
+  display: inline-block;
+  border: 2px solid var(--adv-purple);
+  color: var(--adv-purple);
+  background: transparent;
+  border-radius: 999px;
+  padding: 12px 24px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+.btn.btn-outline:hover {
+  background: var(--adv-purple);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
 /* Desktop behavior */
 @media (min-width: 768px) {
   .burger {
@@ -383,5 +463,74 @@ html,
   /* On desktop, TV moves to the right side */
   .visual {
     justify-items: end;
+  }
+}
+/* --- Advertise: mobile-first tweaks --- */
+.adv-section {
+  background: #fff;
+  color: #0f1220; /* dark text on white */
+}
+
+.adv-inner {
+  padding: clamp(24px, 6vw, 72px) 0;
+}
+
+/* Titles balance nicer on narrow screens */
+.adv-title {
+  text-align: center;
+  margin-inline: auto;
+  text-wrap: balance; /* safe to ignore if unsupported */
+}
+
+/* Numbers + captions centered and safe on tiny widths */
+.adv-stats {
+  grid-template-columns: 1fr; /* single column on mobile */
+  justify-items: center;
+  text-align: center;
+}
+.adv-stat {
+  max-width: 28rem;
+} /* keeps captions readable */
+.adv-number {
+  font-size: clamp(44px, 18vw, 108px); /* slightly smaller min on phones */
+  line-height: 0.95;
+  word-break: break-word; /* prevents overflow */
+}
+
+/* Caption legibility on white */
+.adv-caption {
+  color: #4a4a55;
+  margin: 8px auto 0;
+  max-width: 32ch;
+}
+
+/* CTA: big, thumb-friendly on mobile */
+.adv-cta {
+  margin-top: clamp(20px, 5vw, 40px);
+  text-align: center;
+}
+.btn.btn-outline {
+  width: 100%;
+  max-width: 360px;
+  display: inline-flex;
+  justify-content: center;
+  padding: 14px 22px;
+  font-size: 1rem;
+}
+
+/* --- Scale up & left-align on larger screens --- */
+@media (min-width: 860px) {
+  .adv-title,
+  .adv-stats,
+  .adv-cta {
+    text-align: left;
+  }
+  .adv-stats {
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: start;
+  }
+  .btn.btn-outline {
+    width: auto;
+    max-width: none;
   }
 }
