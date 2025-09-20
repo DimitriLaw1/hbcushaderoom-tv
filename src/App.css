@@ -726,3 +726,91 @@ html,
 .adv-msg.err {
   color: #b20d30;
 }
+/* --- Now Playing row (matches your theme) --- */
+.now-section {
+  margin-top: 20px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 14px;
+}
+
+.now-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.now-title {
+  margin: 0;
+  font-size: clamp(16px, 2.4vw, 18px);
+  font-weight: 800;
+  color: #fff;
+}
+
+.now-viewall {
+  font-size: 14px;
+  text-decoration: none;
+  color: var(--muted);
+}
+.now-viewall:hover {
+  color: #fff;
+}
+
+/* Horizontal scroller */
+.now-scroller {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+}
+.now-scroller::-webkit-scrollbar {
+  height: 8px;
+}
+.now-scroller::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+}
+
+/* Cards */
+.now-card {
+  flex: 0 0 clamp(140px, 38vw, 180px);
+  scroll-snap-align: start;
+}
+
+.now-poster {
+  border-radius: 14px;
+  overflow: hidden;
+  aspect-ratio: 2 / 3; /* movie-card look */
+  background: #111432;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.now-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.now-name {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Larger screens: give cards a little more space */
+@media (min-width: 860px) {
+  .now-section {
+    padding: 16px 18px;
+  }
+  .now-scroller {
+    gap: 16px;
+  }
+}
