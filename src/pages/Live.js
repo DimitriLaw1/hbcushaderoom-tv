@@ -131,9 +131,6 @@ export default function Live() {
       <section className="now-section">
         <div className="now-header">
           <h3 className="now-title">Coming Soon</h3>
-          <a className="now-viewall" href="/live">
-            View All
-          </a>
         </div>
 
         <div className="now-scroller" role="list">
