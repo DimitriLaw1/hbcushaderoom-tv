@@ -814,3 +814,96 @@ html,
     gap: 16px;
   }
 }
+
+/* Loading skeleton for the player area (16:9) */
+.live-skeleton {
+  position: relative;
+  padding-top: 56.25%;
+  border-radius: 16px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0.06)
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+@keyframes shimmer {
+  0% {
+    background-position: 0% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Offline hero matched to your theme */
+.offline-wrap {
+  position: relative;
+  padding-top: 56.25%; /* 16:9 box */
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background-color: #0f102a;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.55);
+}
+.offline-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.6));
+}
+.offline-card {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #0f1220;
+  border-radius: 14px;
+  padding: 14px 16px;
+  max-width: 520px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+}
+.offline-pill {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #111827;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.offline-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 900;
+}
+.offline-sub {
+  margin: 6px 0 10px;
+  color: #4a4a55;
+}
+.offline-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+/* Title styling + mobile padding */
+.live-title {
+  margin: 0 0 12px;
+  font-weight: 900;
+  font-size: clamp(22px, 5vw, 28px);
+  line-height: 1.1;
+}
+
+/* On smaller screens, add extra horizontal/top padding */
+@media (max-width: 768px) {
+  .live-title {
+    padding: 10px 12px 0; /* top + left/right padding */
+  }
+}
