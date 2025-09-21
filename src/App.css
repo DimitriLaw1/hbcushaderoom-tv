@@ -907,3 +907,88 @@ html,
     padding: 10px 12px 0; /* top + left/right padding */
   }
 }
+/* --- Offline hero: mobile-first refresh --- */
+
+/* Give the hero a minimum height on narrow screens so the card isn't cramped */
+.offline-wrap {
+  /* keep your background & borders from earlier */
+  min-height: 360px; /* ensures space for the card on phones */
+}
+
+/* Softer glassy card, tighter on phones, wider on desktop */
+.offline-card {
+  background: rgba(255, 255, 255, 0.92);
+  -webkit-backdrop-filter: saturate(160%) blur(6px);
+  backdrop-filter: saturate(160%) blur(6px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: clamp(12px, 4vw, 18px);
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  max-width: 520px;
+}
+
+/* Typography scales nicely on phones */
+.offline-title {
+  font-size: clamp(18px, 5.2vw, 22px);
+  line-height: 1.15;
+  margin: 2px 0 6px;
+  font-weight: 900;
+}
+.offline-sub {
+  font-size: clamp(13px, 3.7vw, 15px);
+  color: #4a4a55;
+  margin: 6px 0 12px;
+}
+
+/* Pill gets a bit bolder for visibility */
+.offline-pill {
+  background: var(--bg-left);
+  color: #fff;
+  padding: 5px 9px;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+/* Actions: stack on mobile, full-width buttons for easy tapping */
+.offline-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+@media (max-width: 540px) {
+  .offline-actions {
+    flex-direction: column;
+  }
+  .offline-actions .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 18px;
+  }
+}
+
+/* Make the hero itself a bit taller on very small devices */
+@media (max-width: 420px) {
+  .offline-wrap {
+    min-height: 420px;
+  }
+}
+
+/* Slightly reduce overlay strength on phones to keep card readable over busy art */
+@media (max-width: 768px) {
+  .offline-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.28),
+      rgba(0, 0, 0, 0.52)
+    );
+  }
+}
+@media (max-width: 420px) {
+  .offline-card {
+    bottom: auto;
+    top: 12px;
+  }
+}
